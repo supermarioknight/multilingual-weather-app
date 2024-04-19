@@ -2,28 +2,27 @@ import { useContext } from "react";
 import AppContext from "../provider/appContext";
 import Loader from "./Loader";
 import Temperature from "./Temperature";
+import { useIntl } from "react-intl";
 
 function Weather() {
-  const {
-    app,
-    app: { weather, unit },
-  } = useContext(AppContext);
+  const intl = useIntl();
+  const { app } = useContext(AppContext);
 
-  if (!weather) {
+  if (!app.weather) {
     return <Loader showText={true} height="40vh" />;
   }
 
-  const { current } = weather;
+  const { current } = app.weather;
   const date = new Date(current.dt * 1000);
   const formatter = Intl.DateTimeFormat([], {
     hour12: true,
     hour: "numeric",
     minute: "2-digit",
-    timeZone: weather.timezone,
+    timeZone: app.weather.timezone,
   });
-  const dayFormatter = Intl.DateTimeFormat([], {
+  const dayFormatter = Intl.DateTimeFormat(app.lang, {
     weekday: "long",
-    timeZone: weather.timezone,
+    timeZone: app.weather.timezone,
   });
   return (
     <>
@@ -35,10 +34,14 @@ function Weather() {
       ></div>
       <h2 className="temp">
         <Temperature temperature={current.temp} />
-        <span>°{unit}</span>
+        <span>°{app.unit}</span>
       </h2>
       <div className="feels-like">
-        Feels like <Temperature temperature={current.feels_like} /> °{unit}
+        {intl.formatMessage({
+          id: "app.text.feels_like",
+          defaultMessage: "Feels like",
+        })}{" "}
+        <Temperature temperature={current.feels_like} /> °{app.unit}
       </div>
       <div className="description">
         <i className="fa-brands fa-cloudversify"></i>&nbsp;

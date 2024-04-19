@@ -13,7 +13,7 @@ import Loader from "./Loader";
 
 function Hourly() {
   const {
-    app: { weather },
+    app: { weather, lang },
   } = useContext(AppContext);
   if (!weather) {
     return <Loader />;
@@ -45,7 +45,7 @@ function Hourly() {
             minute: "2-digit",
             timeZone: weather.timezone,
           });
-          const dayFormatter = Intl.DateTimeFormat([], {
+          const dayFormatter = Intl.DateTimeFormat(lang, {
             weekday: "long",
             timeZone: weather.timezone,
           });

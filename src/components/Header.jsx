@@ -1,13 +1,21 @@
 import { useContext } from "react";
 import AppContext from "../provider/appContext";
+import { useIntl } from "react-intl";
 
 function Header() {
+  const intl = useIntl();
   const { app, dispatchApp } = useContext(AppContext);
   const activeStyle = { background: "#1a1a1a", color: "#fff" };
 
   return (
     <div className="top-header">
-      <h2 className="heading">Today</h2>
+      <h2 className="heading">
+        {" "}
+        {intl.formatMessage({
+          id: "app.heading.today",
+          defaultMessage: "Today",
+        })}
+      </h2>
       <div className="switch-group">
         <div className="switch">
           <span

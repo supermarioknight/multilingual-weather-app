@@ -102,6 +102,7 @@ h6 {
   font-weight: 500;
   font-family: "Poppins";
   color: var(--placeholder-color);
+  text-transform: none;
 }
 
 .heading {

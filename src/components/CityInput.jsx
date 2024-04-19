@@ -2,8 +2,10 @@ import { useContext, useRef } from "react";
 import AppContext from "../provider/appContext";
 import { getCityName } from "../services/weatherService";
 import geoCoords from "../utils/geoCoords";
+import { useIntl } from "react-intl";
 
 function CityInput() {
+  const intl = useIntl();
   const input = useRef();
   const {
     app: { isDark },
@@ -39,7 +41,10 @@ function CityInput() {
         type="text"
         ref={input}
         style={isDark ? { background: "#232b39", color: "#fff" } : null}
-        placeholder="Search for places ..."
+        placeholder={intl.formatMessage({
+          id: "app.input.city_search_placeholder",
+          defaultMessage: "Search for a city ...",
+        })}
         onInput={(e) => {
           const value = e.target.value;
           clearTimeout(time);

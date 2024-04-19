@@ -1,4 +1,5 @@
-import { useEffect, useReducer } from "react";
+import { useState, useEffect, useReducer } from "react";
+import { IntlProvider } from "react-intl";
 import CityInput from "./components/CityInput";
 import Weather from "./components/Weather";
 import AppContext, { appReducer, initialAppState } from "./provider/appContext";
@@ -13,9 +14,21 @@ import Highlights from "./components/Highlights";
 import Hourly from "./components/Hourly";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import lang_en from "./lang/en.json";
+import lang_sw from "./lang/sw.json";
 
 function App() {
   const [app, dispatchApp] = useReducer(appReducer, initialAppState);
+  const [messages, setMessages] = useState(lang_en);
+
+  useEffect(() => {
+    if (app.lang === "en") {
+      setMessages(lang_en);
+    } else {
+      setMessages(lang_sw);
+    }
+  }, [app.lang]);
+
   useEffect(() => {
     const date = new Date();
     const hour = date.getHours();
@@ -97,6 +110,7 @@ function App() {
   };
   return (
     <AppContext.Provider value={{ app, dispatchApp }}>
+      <IntlProvider locale={app.lang} messages={messages}>
       <section className="container">
         <div className="col-left" style={app.isDark ? colLeftStyle : null}>
           <CityInput />
@@ -105,13 +119,12 @@ function App() {
         <div className="col-right" style={app.isDark ? colRightStyle : null}>
           <Header />
           <Hourly />
-          <h2 className="heading">Today's Highlights</h2>
           <Highlights />
-          <h2 className="heading">This Week</h2>
           <Forecast />
           <Footer />
         </div>
       </section>
+      </IntlProvider>
     </AppContext.Provider>
   );
 }
