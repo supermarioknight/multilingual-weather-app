@@ -10,6 +10,7 @@ const initialAppState = {
     lon: 36.85,
     lat: -1.30,
   },
+  lang: "en",
 };
 
 function appReducer(state, action) {
@@ -28,6 +29,8 @@ function appReducer(state, action) {
       return { ...state, geoCoords: payload };
     case "DARK":
       return { ...state, isDark: payload };
+    case "LANG":
+      return { ...state, lang: payload };
     default:
       return state;
   }

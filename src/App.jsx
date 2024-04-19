@@ -11,6 +11,7 @@ import getWeather, {
 import Forecast from "./components/Forecast";
 import Highlights from "./components/Highlights";
 import Hourly from "./components/Hourly";
+import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 function App() {
@@ -86,7 +87,6 @@ function App() {
     }
   }, [app.isDark]);
 
-  const activeStyle = { background: "#1a1a1a", color: "#fff" };
   const colLeftStyle = {
     background: "#19202d",
     color: "#fff",
@@ -103,39 +103,7 @@ function App() {
           <Weather />
         </div>
         <div className="col-right" style={app.isDark ? colRightStyle : null}>
-          <div className="top-header">
-            <h2 className="heading">Today</h2>
-            <div className="units">
-              <span
-                style={
-                  app.unit === "C"
-                    ? activeStyle
-                    : app.isDark
-                    ? { color: "#000" }
-                    : null
-                }
-                onClick={() => {
-                  dispatchApp({ type: "UNIT", payload: "C" });
-                }}
-              >
-                °C
-              </span>
-              <span
-                onClick={() => {
-                  dispatchApp({ type: "UNIT", payload: "F" });
-                }}
-                style={
-                  app.unit === "F"
-                    ? activeStyle
-                    : app.isDark
-                    ? { color: "#000" }
-                    : null
-                }
-              >
-                °F
-              </span>
-            </div>
-          </div>
+          <Header />
           <Hourly />
           <h2 className="heading">Today's Highlights</h2>
           <Highlights />

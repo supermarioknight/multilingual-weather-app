@@ -170,11 +170,18 @@ h6 {
   align-items: center;
 }
 
-.units {
+.switch-group {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.switch {
   display: flex;
 }
 
-.units span {
+.switch span {
   font-family: "Poppins";
   font-weight: 500;
   width: 40px;
@@ -188,7 +195,7 @@ h6 {
   cursor: pointer;
 }
 
-.units span:nth-child(1) {
+.switch span:nth-child(1) {
   margin-right: 1rem;
 }
 
