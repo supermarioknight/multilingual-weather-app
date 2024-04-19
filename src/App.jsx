@@ -40,25 +40,38 @@ function App() {
     (async () => {
       const { longitude: lon, latitude: lat } = await geoCoords();
       if (lon && lat) {
-        const { name, country } = await getCityName(lon, lat);
-        dispatchApp({ type: "GEO_COORDS", payload: { lon, lat } });
-        dispatchApp({ type: "CITY", payload: name });
-        dispatchApp({ type: "COUNTRY", payload: country });
+        try {
+          const { name, country } = await getCityName(lon, lat);
+          dispatchApp({ type: "GEO_COORDS", payload: { lon, lat } });
+          dispatchApp({ type: "CITY", payload: name });
+          dispatchApp({ type: "COUNTRY", payload: country });
+        } catch (e) {
+          console.log("Error with retrieving city and country:", e);
+        }
       }
     })();
   }, []);
 
   useEffect(() => {
     (async () => {
-      const { lon, lat, country } = await getCityCoords(app.city);
-      dispatchApp({ type: "GEO_COORDS", payload: { lon, lat } });
-      dispatchApp({ type: "COUNTRY", payload: country });
+      try {
+        const { lon, lat, country } = await getCityCoords(app.city);
+        dispatchApp({ type: "GEO_COORDS", payload: { lon, lat } });
+        dispatchApp({ type: "COUNTRY", payload: country });
+      } catch (e) {
+        console.log("Error with retrieving city coords:", e);
+      }
     })();
   }, [app.city]);
 
   useEffect(() => {
     (async () => {
-      const data = await getWeather(app.geoCoords.lon, app.geoCoords.lat);
+      let data;
+      try {
+        data = await getWeather(app.geoCoords.lon, app.geoCoords.lat);
+      } catch (e) {
+        console.log("Error with retrieving weather data", e);
+      }
       dispatchApp({ type: "WEATHER", payload: data });
       const formatter = Intl.DateTimeFormat([], {
         hour12: false,
@@ -111,19 +124,19 @@ function App() {
   return (
     <AppContext.Provider value={{ app, dispatchApp }}>
       <IntlProvider locale={app.lang} messages={messages}>
-      <section className="container">
-        <div className="col-left" style={app.isDark ? colLeftStyle : null}>
-          <CityInput />
-          <Weather />
-        </div>
-        <div className="col-right" style={app.isDark ? colRightStyle : null}>
-          <Header />
-          <Hourly />
-          <Highlights />
-          <Forecast />
-          <Footer />
-        </div>
-      </section>
+        <section className="container">
+          <div className="col-left" style={app.isDark ? colLeftStyle : null}>
+            <CityInput />
+            <Weather />
+          </div>
+          <div className="col-right" style={app.isDark ? colRightStyle : null}>
+            <Header />
+            <Hourly />
+            <Highlights />
+            <Forecast />
+            <Footer />
+          </div>
+        </section>
       </IntlProvider>
     </AppContext.Provider>
   );

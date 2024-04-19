@@ -21,13 +21,17 @@ function CityInput() {
             type: "GEO_COORDS",
             payload: { lon: coords.longitude, lat: coords.latitude },
           });
-          const { country, name } = await getCityName(
-            coords.longitude,
-            coords.latitude
-          );
-          dispatchApp({ type: "COUNTRY", payload: country });
-          dispatchApp({ type: "CITY", payload: name });
-          input.current.value = "";
+          try {
+            const { country, name } = await getCityName(
+              coords.longitude,
+              coords.latitude
+            );
+            dispatchApp({ type: "COUNTRY", payload: country });
+            dispatchApp({ type: "CITY", payload: name });
+            input.current.value = "";
+          } catch (e) {
+            console.log("Error with retrieving city and country", e);
+          }
         }}
         style={isDark ? { background: "#37435a" } : null}
       >
