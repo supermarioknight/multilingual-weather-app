@@ -2,7 +2,7 @@
   "app.heading.today": "Today",
   "app.heading.today_highlights": "Today's Highlights",
   "app.heading.this_week": "This Week",
-  "app.heading.city_search_placeholder": "Search for a city ...",
+  "app.input.city_search_placeholder": "Search for a city ...",
   "app.text.loading": "Loading...",
   "app.text.feels_like": "Feels like",
   "app.text.humidity": "Humidity",
