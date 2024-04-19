@@ -1,0 +1,15 @@
+{
+  "app.heading.today": "Today",
+  "app.heading.today_highlights": "Today's Highlights",
+  "app.heading.this_week": "This Week",
+  "app.heading.city_search_placeholder": "Search for a city ...",
+  "app.text.loading": "Loading...",
+  "app.text.feels_like": "Feels like",
+  "app.text.humidity": "Humidity",
+  "app.text.wind_speed": "Wind Speed",
+  "app.text.sunrise": "Sunrise",
+  "app.text.sunset": "Sunset",
+  "app.text.clouds": "Clouds",
+  "app.text.uv_index": "UX Index",
+  "app.text.pressure": "Pressure"
+}
