@@ -17,7 +17,7 @@ function Footer() {
           rel="noreferrer"
           style={isDark ? anchorStyle : null}
         >
-          <i class="fa-brands fa-github"></i> <span>GitHub</span>
+          <i className="fa-brands fa-github"></i> <span>GitHub</span>
         </a>
         <a
           href="https://github.com/supermarioknight/multilingual-weather-app"
@@ -25,7 +25,7 @@ function Footer() {
           rel="noreferrer"
           style={isDark ? anchorStyle : null}
         >
-          <i class="fa-solid fa-code-fork"></i> <span>Fork</span>
+          <i className="fa-solid fa-code-fork"></i> <span>Fork</span>
         </a>
         <a
           href="https://github.com/supermarioknight/multilingual-weather-app"
@@ -33,7 +33,7 @@ function Footer() {
           rel="noreferrer"
           style={isDark ? anchorStyle : null}
         >
-          <i class="fa-solid fa-star"></i> <span>Star</span>
+          <i className="fa-solid fa-star"></i> <span>Star</span>
         </a>
         <a
           href="https://t.me/alchsun"
@@ -41,7 +41,7 @@ function Footer() {
           rel="noreferrer"
           style={isDark ? anchorStyle : null}
         >
-          <i class="fa-brands fa-telegram"></i> <span>Telegram</span>
+          <i className="fa-brands fa-telegram"></i> <span>Telegram</span>
         </a>
       </footer>
     </>
