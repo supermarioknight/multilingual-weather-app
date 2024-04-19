@@ -18,9 +18,10 @@ This is a React SPA displays the temperature and weather conditions in detail wh
     $ npm install
     ```
 2. Get your OpenWeatherMap API key
+    - Duplicate example.env file and rename it to .env
     - Create an account on [OpenWeatherMap](https://home.openweathermap.org/)
     - Grab the pre-created key on [API Keys](https://home.openweathermap.org/api_keys) page
-    - Replace `MY_OPEN_WEATHER_MAP_API_KEY` in `src/config/config.js` with yours
+    - Paste it into `REACT_APP_OPEN_WEATHER_MAP_API_KEY` variable in .env in `src/config/config.js` with yours
 3. Run the project
     ```
     $ npm start
