@@ -15,6 +15,7 @@ function CityInput() {
   return (
     <div className="input-group">
       <span
+        data-testid="location-icon"
         onClick={async () => {
           const coords = await geoCoords();
           dispatchApp({
