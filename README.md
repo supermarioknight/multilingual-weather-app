@@ -1,5 +1,6 @@
 # **Weather App**
 This is a React SPA displays the temperature and weather conditions in detail which fed by OpenWeatherMap API.
+You can check it out on [Live Demo](https://multilingual-weather-app.netlify.app/)
 ## Features
 - Display the weather data of Nairobi, KE on the initial loading.
 - Search for a city to display the weather data of the city chosen.
